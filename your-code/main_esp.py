@@ -171,3 +171,5 @@ for i in range(d.shape[0]):
 
 # Imprimir g para verificar los resultados
 print(g)
+#otra manera de acerlo seria 
+np.eye(5,5, dtype="str")

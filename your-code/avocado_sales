@@ -1,0 +1,45 @@
+#1.Carga de Datos: Comienza cargando el conjunto de datos de Aguacate (avocado.csv) en un DataFrame de Pandas.
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load the Avocado dataset into a Pandas DataFrame
+df = pd.read_csv("/Users/criiiss/ironhack/notebook/exercisi_classe/11_Session_X/avocado.csv")
+
+#2.Exploración de Datos: Realiza un análisis exploratorio de datos para entender la estructura del conjunto de datos, incluyendo el número de filas y columnas, tipos de datos y cualquier valor faltante.
+# Data Exploration
+# Display basic information about the dataset
+print(df.info())
+
+# Time-Series Analysis
+# Convert the 'Date' column to a datetime format
+df['Date'] = pd.to_datetime(df['Date'])
+df['Date'].info()
+print(df.info())
+
+# Group data by date to analyze trends
+monthly_sales = df.groupby(df['Date'].dt.to_period("M"))['Total Volume'].sum()
+print(monthly_sales)
+monthly_sales.plot(figsize=(12, 6))
+plt.title('Monthly Avocado Sales Over Time')
+plt.xlabel('Month')
+plt.ylabel('Total Volume Sold')
+plt.show()
+
+#4.Análisis Regional: Investiga las ventas de aguacates por región. ¿Qué regiones son las mejores en términos de volumen de ventas y precios? ¿Hay regiones que requieren atención específica?
+region = df.groupby(df['region'])['Total Volume'].sum()
+print(region)
+region.plot(figsize=(12, 6))
+plt.title('Regional')
+plt.xlabel('Region')
+plt.ylabel('Total Volum')
+plt.show()
+
+
+
+
+
+
+
+
